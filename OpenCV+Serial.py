@@ -2,7 +2,7 @@
 import cv2
 import threading #多线程
 
-import serial#导入串口通信库
+import serial #导入串口通信库
 from time import sleep
 
 ser = serial.Serial()
@@ -37,13 +37,6 @@ def send(send_data):
         print("向串口发送数据成功",send_data)
     else:
         print("发送失败！")
-
-# if __name__ == '__main__':
-#
-#     while True:
-#         #a=input("输入要发送的数据：")
-#         send("1234567")
-#         sleep(5)#起到一个延时的效果，这里如果不加上一个while True，程序执行一次就自动跳出了
 
 
 
@@ -84,34 +77,42 @@ def OpenCVCam():
             global HasFace
             HasFace = True
 
-            #send("1")
-            #sleep(1)
+        else:
+            HasFace = False
 
 
 def Sending():
     i = 0
-    global HasFace
-    print("执行sending！")
-    sleep(0.5)
-    if(HasFace):
-        send("1")
-        i += 1
-        print(i)
-        sleep(0.5)
+    while(True):
 
-t1 = threading.Thread(target=OpenCVCam())
+        global HasFace
+        #print("执行sending！")
+        #sleep(0.5)
+        if (HasFace):
+            send("1")
+            i += 1
+            print(i)
+            sleep(1)
+
+
+t1 = threading.Thread(target=OpenCVCam)
 threads.append(t1)
-t2 = threading.Thread(target=Sending())
+t2 = threading.Thread(target=Sending)
 threads.append(t2)
 
-for t in threads:
-    t.start()
-for t in threads:
-    t.join()
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
+
+# for t in threads:  另一种写法
+#     t.start()
+# for t in threads:
+#     t.join()
 
 print("退出！")
 # 最后，关闭所有窗口
 cap.release()
 cv2.destroyAllWindows()
-
 

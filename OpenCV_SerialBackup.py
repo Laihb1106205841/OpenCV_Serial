@@ -1,15 +1,9 @@
-# 调用电脑摄像头进行实时人脸+眼睛识别，可直接复制粘贴运行
+
 import cv2
 import threading #多线程
 
 import serial #导入串口通信库
 from time import sleep
-
-
-
-
-
-
 
 def port_open_recv():#对串口的参数进行配置
     ser.port='com3'
@@ -18,15 +12,19 @@ def port_open_recv():#对串口的参数进行配置
     ser.stopbits=1
     ser.parity="N"#奇偶校验位
     print("尝试打开串口3")
-    ser.open()
-    if(ser.isOpen()):
-        print("串口3打开成功！")
-    else:
-        print("串口3打开失败，尝试打开串口4！")
-        ser.port='com4'
+    try:
         ser.open()
-#isOpen()函数来查看串口的开闭状态
+    except:
+        print("串口3打开失败，尝试打开串口4！")
+        ser.port = 'com4'
+        ser.open()
 
+
+    if(ser.isOpen()):
+        print("串口打开成功！")
+    else:
+       print("打开失败！")
+#isOpen()函数来查看串口的开闭状态
 
 
 def port_close():
@@ -42,14 +40,6 @@ def send(send_data):
         print("向串口发送数据成功",send_data)
     else:
         print("发送失败！")
-
-
-# face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-#
-# eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
-# # 调用摄像头摄像头
-# cap = cv2.VideoCapture(0)
-
 
 def OpenCVCam():
 
@@ -143,6 +133,7 @@ def FOROUT():
 
     port_open_recv()  # 打开串口
 
+    global HasFace
     HasFace = False
 
     t1 = threading.Thread(target=OpenCVCam)

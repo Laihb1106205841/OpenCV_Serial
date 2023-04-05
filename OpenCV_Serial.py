@@ -1,32 +1,31 @@
-# 调用电脑摄像头进行实时人脸+眼睛识别，可直接复制粘贴运行
-import cv2
-import threading #多线程
 
-import serial #导入串口通信库
+import cv2
+import threading  # 多线程
+
+import serial  # 导入串口通信库
 from time import sleep
 
 
-
-
-
-
-
-def port_open_recv():#对串口的参数进行配置
-    ser.port='com3'
-    ser.baudrate=9600
-    ser.bytesize=8
-    ser.stopbits=1
-    ser.parity="N"#奇偶校验位
+def port_open_recv():  # 对串口的参数进行配置
+    ser.port = 'com3'
+    ser.baudrate = 9600
+    ser.bytesize = 8
+    ser.stopbits = 1
+    ser.parity = "N"  # 奇偶校验位
     print("尝试打开串口3")
-    ser.open()
-    if(ser.isOpen()):
-        print("串口3打开成功！")
-    else:
-        print("串口3打开失败，尝试打开串口4！")
-        ser.port='com4'
-        ser.open()
-#isOpen()函数来查看串口的开闭状态
 
+    try:
+        ser.open()
+    except:
+        print("串口3打开失败，尝试打开串口4！")
+        ser.port = 'com4'
+        ser.open()
+
+    if (ser.isOpen()):
+        print("串口打开成功！")
+    else:
+        print("打开失败！")
+#  isOpen()函数来查看串口的开闭状态
 
 
 def port_close():
@@ -36,19 +35,13 @@ def port_close():
     else:
         print("串口关闭成功！")
 
+
 def send(send_data):
     if(ser.isOpen()):
-        ser.write(send_data.encode('utf-8'))#编码
-        print("向串口发送数据成功",send_data)
+        ser.write(send_data.encode('utf-8'))  # 编码
+        print("向串口发送数据成功", send_data)
     else:
         print("发送失败！")
-
-
-# face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-#
-# eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
-# # 调用摄像头摄像头
-# cap = cv2.VideoCapture(0)
 
 
 def OpenCVCam():
@@ -59,12 +52,13 @@ def OpenCVCam():
         faces = face_cascade.detectMultiScale(frame, 1.3, 5)
         img = frame
         for (x, y, w, h) in faces:
-            # 画出人脸框，蓝色，画笔宽度微
+            # 画出人脸框，绿色，画笔宽度微
             img = cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+            # 还可以用人眼级联分类器引擎在人脸区域进行人眼识别，返回的eyes为眼睛坐标列表
             # 框选出人脸区域，在人脸区域而不是全图中进行人眼检测，节省计算资源
-            face_area = img[y:y + h, x:x + w]
-            eyes = eye_cascade.detectMultiScale(face_area)
-            # 用人眼级联分类器引擎在人脸区域进行人眼识别，返回的eyes为眼睛坐标列表
+            #face_area = img[y:y + h, x:x + w]
+            #eyes = eye_cascade.detectMultiScale(face_area)
         #  for (ex, ey, ew, eh) in eyes:
                 # 画出人眼框，绿色，画笔宽度为1
             #    cv2.rectangle(face_area, (ex, ey), (ex + ew, ey + eh), (255, 0, 0), 1)
@@ -97,6 +91,7 @@ def Sending():
 
 
 if __name__ == "__main__":
+
     ser = serial.Serial()
 
     threads = []
@@ -130,8 +125,8 @@ if __name__ == "__main__":
 # for t in threads:
 #     t.join()
 
-
 def FOROUT():
+
     ser = serial.Serial()
 
     threads = []
@@ -143,6 +138,7 @@ def FOROUT():
 
     port_open_recv()  # 打开串口
 
+    global HasFace
     HasFace = False
 
     t1 = threading.Thread(target=OpenCVCam)
@@ -160,7 +156,3 @@ def FOROUT():
     # 最后，关闭所有窗口
     cap.release()
     cv2.destroyAllWindows()
-
-
-
-

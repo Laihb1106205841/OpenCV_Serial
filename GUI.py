@@ -1,9 +1,11 @@
 from tkinter import *
 import os
 
+import Main
+
 
 def Open():
-    os.system('OpenCV_Serial.py')
+    Main.OpenCVa()
 
 
 

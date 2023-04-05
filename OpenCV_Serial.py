@@ -114,10 +114,18 @@ if __name__ == "__main__":
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
     eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
-# 调用摄像头摄像头
-    cap = cv2.VideoCapture(0)
+# 调用电脑摄像头
+    try:
+        cap = cv2.VideoCapture(0)
 
-    port_open_recv()#打开串口
+    except:
+        print("电脑摄像头未成功开启！")
+        print("成功打开摄像头！")
+
+    try:
+        port_open_recv()#打开串口
+    except:
+        print("串口打开失败！")
 
     HasFace = False
 
@@ -131,6 +139,10 @@ if __name__ == "__main__":
 
     t1.join()
     t2.join()
+
+
+
+
     print("退出！")
 
 # 最后，关闭所有窗口
@@ -142,19 +154,25 @@ if __name__ == "__main__":
 #     t.join()
 
 def FOROUT():
-
     ser = serial.Serial()
 
     threads = []
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
     eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
-    # 调用摄像头摄像头
-    cap = cv2.VideoCapture(0)
+    # 调用电脑摄像头
+    try:
+        cap = cv2.VideoCapture(0)
 
-    port_open_recv()  # 打开串口
+    except:
+        print("电脑摄像头未成功开启！")
+        print("成功打开摄像头！")
 
-    global HasFace
+    try:
+        port_open_recv()  # 打开串口
+    except:
+        print("串口打开失败！")
+
     HasFace = False
 
     t1 = threading.Thread(target=OpenCVCam)
@@ -167,6 +185,7 @@ def FOROUT():
 
     t1.join()
     t2.join()
+
     print("退出！")
 
     # 最后，关闭所有窗口

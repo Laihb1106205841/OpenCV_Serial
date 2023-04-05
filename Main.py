@@ -1,7 +1,7 @@
-import OpenCV_Serial
-import OpenCVt
+#from OpenCV_Serial import FOROUT
+#import OpenCVt
 
-print("first")
+print("打开GUI成功！")
 
 
 def sayHello():
@@ -10,8 +10,9 @@ def sayHello():
     print(__name__ + 'from hello.sayhello()')
 
 def OpenCVa():
+    print("按钮command成功！")
+    import OpenCV_Serial
     OpenCV_Serial.FOROUT()
-
 
 
 
@@ -19,5 +20,4 @@ if __name__ == "__main__":
     print('This is main of module "hello.py"')
     sayHello()
     print(__name__ + 'from hello.main')
-    OpenCV_Serial.FOROUT()
-
+    OpenCVa()

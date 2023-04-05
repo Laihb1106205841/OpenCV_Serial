@@ -6,7 +6,7 @@ import serial  # 导入串口通信库
 from time import sleep
 
 
-def port_open_recv():  # 对串口的参数进行配置
+def port_open_recv(ser):  # 对串口的参数进行配置
     ser.port = 'com3'
     ser.baudrate = 9600
     ser.bytesize = 8
@@ -117,10 +117,11 @@ if __name__ == "__main__":
 # 调用电脑摄像头
     try:
         cap = cv2.VideoCapture(0)
+        print("成功打开摄像头！")
 
     except:
-        print("电脑摄像头未成功开启！")
-        print("成功打开摄像头！")
+        print("电脑摄像头未成功开启！你可能关闭了摄像头！")
+
 
     try:
         port_open_recv()#打开串口
@@ -154,25 +155,30 @@ if __name__ == "__main__":
 #     t.join()
 
 def FOROUT():
-    ser = serial.Serial()
+    Ser = serial.Serial()
 
     threads = []
-    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+    global face_cascade
+    face_cascade= cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-    eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
+    global eye_cascade
+    eye_cascade= cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
+
     # 调用电脑摄像头
     try:
+        global cap
         cap = cv2.VideoCapture(0)
-
-    except:
-        print("电脑摄像头未成功开启！")
         print("成功打开摄像头！")
+    except:
+        print("电脑摄像头未成功开启！你可能关闭了摄像头！")
+
 
     try:
-        port_open_recv()  # 打开串口
+        port_open_recv(ser=Ser)  # 打开串口
     except:
         print("串口打开失败！")
 
+    global HasFace
     HasFace = False
 
     t1 = threading.Thread(target=OpenCVCam)

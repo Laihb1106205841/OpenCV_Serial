@@ -21,6 +21,22 @@ def port_open_recv():  # 对串口的参数进行配置
         ser.port = 'com4'
         ser.open()
 
+    try:
+        if(not ser.isOpen()):
+            print("串口3,4都打开失败了，尝试打开串口2！")
+            ser.port = 'com2'
+            ser.open()
+    except:
+        if(not ser.isOpen()):
+            print("串口2,3,4全部木大，请重新检查串口连接！")
+            print("在此键入您的串口运行速度：")
+            ser.baudrate = input()
+            print("在此输入您的串口（com1，com2等）")
+            str = input()
+            ser.port = str
+            print("尝试打开串口")
+            ser.open()
+
     if (ser.isOpen()):
         print("串口打开成功！")
     else:

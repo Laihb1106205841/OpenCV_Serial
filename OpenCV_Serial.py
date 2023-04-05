@@ -5,21 +5,26 @@ import threading #多线程
 import serial #导入串口通信库
 from time import sleep
 
-ser = serial.Serial()
 
-threads = []
+
+
+
+
 
 def port_open_recv():#对串口的参数进行配置
-    ser.port='com4'
+    ser.port='com3'
     ser.baudrate=9600
     ser.bytesize=8
     ser.stopbits=1
     ser.parity="N"#奇偶校验位
+    print("尝试打开串口3")
     ser.open()
     if(ser.isOpen()):
-        print("串口打开成功！")
+        print("串口3打开成功！")
     else:
-        print("串口打开失败！")
+        print("串口3打开失败，尝试打开串口4！")
+        ser.port='com4'
+        ser.open()
 #isOpen()函数来查看串口的开闭状态
 
 
@@ -39,16 +44,12 @@ def send(send_data):
         print("发送失败！")
 
 
+# face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+#
+# eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
+# # 调用摄像头摄像头
+# cap = cv2.VideoCapture(0)
 
-face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-
-eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
-# 调用摄像头摄像头
-cap = cv2.VideoCapture(0)
-
-port_open_recv()#打开串口
-
-HasFace = False
 
 def OpenCVCam():
 
@@ -95,24 +96,71 @@ def Sending():
             sleep(1)
 
 
-t1 = threading.Thread(target=OpenCVCam)
-threads.append(t1)
-t2 = threading.Thread(target=Sending)
-threads.append(t2)
+if __name__ == "__main__":
+    ser = serial.Serial()
 
-t1.start()
-t2.start()
+    threads = []
+    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-t1.join()
-t2.join()
+    eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
+# 调用摄像头摄像头
+    cap = cv2.VideoCapture(0)
 
+    port_open_recv()#打开串口
+
+    HasFace = False
+
+    t1 = threading.Thread(target=OpenCVCam)
+    threads.append(t1)
+    t2 = threading.Thread(target=Sending)
+    threads.append(t2)
+
+    t1.start()
+    t2.start()
+
+    t1.join()
+    t2.join()
+    print("退出！")
+
+# 最后，关闭所有窗口
+    cap.release()
+    cv2.destroyAllWindows()
 # for t in threads:  另一种写法
 #     t.start()
 # for t in threads:
 #     t.join()
 
-print("退出！")
-# 最后，关闭所有窗口
-cap.release()
-cv2.destroyAllWindows()
+
+def FOROUT():
+    ser = serial.Serial()
+
+    threads = []
+    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
+    eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
+    # 调用摄像头摄像头
+    cap = cv2.VideoCapture(0)
+
+    port_open_recv()  # 打开串口
+
+    HasFace = False
+
+    t1 = threading.Thread(target=OpenCVCam)
+    threads.append(t1)
+    t2 = threading.Thread(target=Sending)
+    threads.append(t2)
+
+    t1.start()
+    t2.start()
+
+    t1.join()
+    t2.join()
+    print("退出！")
+
+    # 最后，关闭所有窗口
+    cap.release()
+    cv2.destroyAllWindows()
+
+
+
 

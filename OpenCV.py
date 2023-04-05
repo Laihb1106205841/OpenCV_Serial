@@ -1,7 +1,7 @@
 #导入OpenCv人脸识别库
 import cv2
 
-import main
+import mainSerial
 import serial#导入串口通信库
 from time import sleep
 

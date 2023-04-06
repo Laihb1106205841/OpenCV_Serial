@@ -7,6 +7,8 @@ global i
 i = 0
 
 def Open():
+    global OpenCV
+    OpenCV = False
 
     Main.OpenCVa()
 
@@ -31,3 +33,4 @@ def GUi():
 if __name__ == '__main__':
 
     GUi()
+    print("GUI关闭！")

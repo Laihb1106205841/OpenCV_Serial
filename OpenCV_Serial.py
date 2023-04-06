@@ -44,7 +44,7 @@ def port_open_recv(ser):  # 对串口的参数进行配置
 #  isOpen()函数来查看串口的开闭状态
 
 
-def port_close():
+def port_close(ser):
     ser.close()
     if(ser.isOpen()):
         print("串口关闭失败！")
@@ -52,7 +52,7 @@ def port_close():
         print("串口关闭成功！")
 
 
-def send(send_data):
+def send(send_data, ser):
     if(ser.isOpen()):
         ser.write(send_data.encode('utf-8'))  # 编码
         print("向串口发送数据成功", send_data)
@@ -100,7 +100,7 @@ def Sending():
         #print("执行sending！")
         #sleep(0.5)
         if (HasFace):
-            send("1")
+            send("1",ser)
             i += 1
             print(i)
             sleep(1)
@@ -155,7 +155,10 @@ if __name__ == "__main__":
 #     t.join()
 
 def FOROUT():
-    Ser = serial.Serial()
+    global ser
+    ser = serial.Serial()
+
+
 
     threads = []
     global face_cascade
@@ -174,7 +177,7 @@ def FOROUT():
 
 
     try:
-        port_open_recv(ser=Ser)  # 打开串口
+        port_open_recv(ser=ser)  # 打开串口
     except:
         print("串口打开失败！")
 

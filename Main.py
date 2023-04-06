@@ -1,7 +1,7 @@
 #from OpenCV_Serial import FOROUT
 #import OpenCVt
 
-print("打开GUI成功！")
+print("GUI打开成功！")
 
 
 def sayHello():

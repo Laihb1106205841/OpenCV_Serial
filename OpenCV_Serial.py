@@ -129,6 +129,7 @@ def Sending():
 #     t.join()
 
 def FOROUT():
+    print("\033[0;33;40m按钮发送命令成功！请稍等\033[0m")
 
     try:
         global ser

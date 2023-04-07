@@ -1,7 +1,7 @@
 #from OpenCV_Serial import FOROUT
 #import OpenCVt
 
-print("GUI打开成功！")
+print("连接到命令层！")
 
 
 def sayHello():
@@ -12,7 +12,6 @@ def sayHello():
 
 def OpenCVa():
 
-    print("\033[0;33;40m按钮发送命令成功！请稍等\033[0m")
     import OpenCV_Serial
     OpenCV_Serial.FOROUT()
 

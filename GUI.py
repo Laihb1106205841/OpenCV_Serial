@@ -39,6 +39,7 @@ def GUi():
     root.geometry("400x400")
     root.iconbitmap('favicon (8).ico')
     root.resizable(True,True)
+    print("GUI打开成功！")
     conditions(root=root)
 
 if __name__ == '__main__':

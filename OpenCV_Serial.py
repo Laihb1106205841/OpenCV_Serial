@@ -7,6 +7,8 @@ from time import sleep
 
 
 def port_open_recv(ser):  # 对串口的参数进行配置
+
+    OpenSer = 0
     ser.port = 'com3'
     ser.baudrate = 9600
     ser.bytesize = 8
@@ -15,18 +17,32 @@ def port_open_recv(ser):  # 对串口的参数进行配置
     print("尝试打开串口3")
 
     try:
-        ser.open()
-    except:
-        print("串口3打开失败，尝试打开串口4！")
-        ser.port = 'com4'
-        ser.open()
-
-    try:
-        if(not ser.isOpen()):
-            print("串口3,4都打开失败了，尝试打开串口2！")
-            ser.port = 'com2'
+        try:
             ser.open()
+            if(ser.isOpen()):
+                OpenSer = 3
+
+        except:
+            if(not ser.isOpen()):
+                print("串口3打开失败，尝试打开串口4！")
+                ser.port = 'com4'
+                ser.open()
+                if(ser.isOpen()):
+                    OpenSer = 4
+
     except:
+            try:
+                if(not ser.isOpen()):
+                    print("串口3,4都打开失败了，尝试打开串口2！")
+                    ser.port = 'com2'
+                    ser.open()
+                    if(ser.isOpen()):
+                        OpenSer = 2
+            except:
+                print("串口2打开失败！")
+
+
+    finally:
         if(not ser.isOpen()):
             print("串口2,3,4全部木大，请重新检查串口连接！")
             print("在此键入您的串口运行速度：")
@@ -36,9 +52,10 @@ def port_open_recv(ser):  # 对串口的参数进行配置
             ser.port = str
             print("尝试打开串口")
             ser.open()
+            OpenSer = str
 
     if (ser.isOpen()):
-        print("串口打开成功！")
+        print("成功打开串口",OpenSer,"!")
     else:
         print("打开失败！")
 #  isOpen()函数来查看串口的开闭状态
@@ -116,6 +133,7 @@ if __name__ == "__main__":
     eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
 # 调用电脑摄像头
     try:
+        global cap
         cap = cv2.VideoCapture(0)
         print("成功打开摄像头！")
 
@@ -124,7 +142,7 @@ if __name__ == "__main__":
 
 
     try:
-        port_open_recv()#打开串口
+        port_open_recv(ser=ser)#打开串口
     except:
         print("串口打开失败！")
 
@@ -176,10 +194,10 @@ def FOROUT():
         print("电脑摄像头未成功开启！你可能关闭了摄像头！")
 
 
-    try:
-        port_open_recv(ser=ser)  # 打开串口
-    except:
-        print("串口打开失败！")
+
+    port_open_recv(ser=ser)  # 打开串口
+
+
 
     global HasFace
     HasFace = False

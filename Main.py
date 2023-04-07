@@ -10,7 +10,8 @@ def sayHello():
     print(__name__ + 'from hello.sayhello()')
 
 def OpenCVa():
-    print("按钮command成功！")
+
+    print("\033[0;33;40m按钮发送命令成功！请稍等\033[0m")
     import OpenCV_Serial
     OpenCV_Serial.FOROUT()
 

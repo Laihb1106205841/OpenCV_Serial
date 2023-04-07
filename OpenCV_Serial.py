@@ -131,11 +131,7 @@ def Sending():
 def FOROUT():
     print("\033[0;33;40m按钮发送命令成功！请稍等\033[0m")
 
-    try:
-        global ser
-        ser = serial.Serial()
-    except:
-        print("Serial库调用失败！请检查Serial库是否正确安装！")
+
 
     threads = []
 
@@ -156,8 +152,16 @@ def FOROUT():
     except:
         print("电脑摄像头未成功开启！你可能关闭了摄像头！")
 
+    try:
+        global ser
+        ser = serial.Serial()
+        port_open_recv(ser=ser)  # 打开串口
+    except:
+        print("Serial库调用失败！请检查Serial库是否正确安装！")
 
-    port_open_recv(ser=ser)  # 打开串口
+
+
+
 
 
     global HasFace
@@ -179,10 +183,6 @@ def FOROUT():
     # 最后，关闭所有窗口
     cap.release()
     cv2.destroyAllWindows()
-
-
-
-
 
 
 if __name__ == "__main__":

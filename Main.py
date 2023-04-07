@@ -13,6 +13,7 @@ def sayHello():
 def OpenCVa():
 
     import OpenCV_Serial
+    print("发送命令！")
     OpenCV_Serial.FOROUT()
 
 

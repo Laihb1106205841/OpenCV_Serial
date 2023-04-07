@@ -129,23 +129,15 @@ def Sending():
 #     t.join()
 
 def FOROUT():
-
-    try:
-        global ser
-        ser = serial.Serial()
-    except:
-        print("Serial库调用失败！请检查Serial库是否正确安装！")
+    global ser
+    ser = serial.Serial()
 
     threads = []
+    global face_cascade
+    face_cascade= cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-    try:
-        global face_cascade
-        face_cascade= cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-    except:
-        print("脸部数据库导入失败！请检查CV2有没有装对，或者数据库路径有无问题！")
-
-    #global eye_cascade  #眼睛模块，想用都可以用
-    #eye_cascade= cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
+    global eye_cascade
+    eye_cascade= cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
 
     # 调用电脑摄像头
     try:
@@ -186,3 +178,4 @@ def FOROUT():
 
 if __name__ == "__main__":
     FOROUT()
+

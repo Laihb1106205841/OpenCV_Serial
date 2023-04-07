@@ -1,10 +1,13 @@
 from tkinter import *
 import os
-
 import Main
 
-global i
-i = 0
+#获取py 文件所在目录
+current_path = os.path.dirname(__file__)
+
+#把这个目录设置成工作目录
+os.chdir(current_path)
+
 
 def Open1():
 

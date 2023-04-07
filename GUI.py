@@ -2,11 +2,11 @@ from tkinter import *
 import os
 import Main
 
-#获取py 文件所在目录
-current_path = os.path.dirname(__file__)
+#获取py 文件所在目录(报错时尝试)
+#current_path = os.path.dirname(__file__)
 
 #把这个目录设置成工作目录
-os.chdir(current_path)
+#os.chdir(current_path)
 
 
 def Open1():

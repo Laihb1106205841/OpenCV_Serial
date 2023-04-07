@@ -144,8 +144,8 @@ def FOROUT():
     except:
         print("脸部数据库导入失败！请检查CV2有没有装对，或者数据库路径有无问题！")
 
-    #global eye_cascade  #眼睛模块，想用都可以用
-    #eye_cascade= cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
+    #  global eye_cascade  #眼睛模块，想用都可以用
+    #  eye_cascade= cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
 
     # 调用电脑摄像头
     try:

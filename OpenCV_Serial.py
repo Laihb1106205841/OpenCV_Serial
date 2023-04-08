@@ -77,7 +77,10 @@ def send(send_data, ser):
         print("发送失败！")
 
 
+
+
 def OpenCVCam():
+    global Running
 
     while (True):
         # 获取摄像头拍摄到的画面
@@ -100,7 +103,10 @@ def OpenCVCam():
         cv2.imshow('frame2', img)
         # 每5毫秒监听一次键盘动作
         if cv2.waitKey(5) & 0xFF == ord('q'):
+
+            Running = False
             break
+
         elif( len(faces) > 0 ):
             global HasFace
             HasFace = True
@@ -111,7 +117,8 @@ def OpenCVCam():
 
 def Sending():
     i = 0
-    while(True):
+    global Running
+    while(Running):
 
         global HasFace
         #print("执行sending！")
@@ -131,6 +138,8 @@ def Sending():
 def FOROUT():
     print("\033[0;33;40m按钮发送命令成功！请稍等\033[0m")
 
+    global Running
+    Running= True
 
 
     threads = []
@@ -159,11 +168,6 @@ def FOROUT():
     except:
         print("Serial库调用失败！请检查Serial库是否正确安装！")
 
-
-
-
-
-
     global HasFace
     HasFace = False
 
@@ -177,6 +181,7 @@ def FOROUT():
 
     t1.join()
     t2.join()
+
 
     print("退出！")
 

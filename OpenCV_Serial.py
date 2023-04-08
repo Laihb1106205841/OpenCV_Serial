@@ -6,6 +6,7 @@ from time import sleep
 
 import Serial
 
+Tim = 0
 
 def port_open_recv(ser):  # 对串口的参数进行配置
     Serial.port_open_recv(ser=ser)
@@ -47,6 +48,7 @@ def OpenCVCam():
 
 
 def Sending():
+    global Tim
     i = 0
     global Running
     while(Running):
@@ -57,6 +59,7 @@ def Sending():
         if (HasFace):
             Serial.send("1",ser)
             i += 1
+            Tim +=1
             print(i)
             sleep(1)
 
@@ -66,6 +69,10 @@ def Sending():
 #     t.join()
 
 def FOROUT():
+    global Tim
+    Tim = 0
+
+
     print("\033[0;33;40m按钮发送命令成功！请稍等\033[0m")
     print("按q可退出程序！")
 
@@ -120,6 +127,8 @@ def FOROUT():
     cv2.destroyAllWindows()
 
     Serial.port_close(ser)
+    return Tim
+
 
 
 

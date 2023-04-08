@@ -9,16 +9,23 @@ def Time():
     try:
         global ser
         ser = serial.Serial()
-        Serial.port_open_recv(ser=ser)  # 打开串口
+        str1 = Serial.port_open_recv(ser=ser)  # 打开串口
     except:
         print("serial库调用失败！请检查serial库是否正确安装！")
 
     else:
-        Sending()
+        strSend = Sending()
+
+    str = '切换为时钟模式！'
+
+    return str1,strSend,str
 
 def Sending():
 
-    Serial.send("2",ser)
+    strSend = Serial.send("2",ser)
 
-    Serial.port_close(ser)
+    strEND = Serial.port_close(ser)
     print("成功调为时钟模式！")
+
+    str2 = strSend
+    return str2

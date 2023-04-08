@@ -52,8 +52,13 @@ def port_open_recv(ser):  # 对串口的参数进行配置
 
     if (ser.isOpen()):
         print("成功打开串口",OpenSer,"!")
+
+        return '打开串口',OpenSer
     else:
         print("打开失败！")
+        return "打开串口失败！"
+
+
 #  isOpen()函数来查看串口的开闭状态
 
 
@@ -64,6 +69,7 @@ def port_close(ser):
             print("串口关闭失败！")
         else:
             print("串口关闭成功！")
+            return "串口关闭！"
     except:
         print("串口关闭失败！")
 
@@ -72,8 +78,10 @@ def send(send_data, ser):
     if(ser.isOpen()):
         ser.write(send_data.encode('utf-8'))  # 编码
         print("向串口发送数据成功", send_data)
+        return "向串口成功发送数据", send_data
     else:
         print("发送失败！")
+        return "发送失败！"
 
 
 def Connect():

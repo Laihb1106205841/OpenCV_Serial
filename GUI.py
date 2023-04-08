@@ -11,6 +11,7 @@ import Main
 
 class GUI():
 
+
     show = ''
     def __init__(self):
         root = Tk()  # 创建根窗口
@@ -20,6 +21,8 @@ class GUI():
         root.resizable(True, True)
         print("GUI打开成功！")
         G.conditions(self=self,root=root)
+
+
 
     def conditions(self,root):
 
@@ -32,7 +35,10 @@ class GUI():
         condition2.config(state=NORMAL)
         condition2.pack()
 
-        t = Text(root)  # 创建多行文本控件
+         # 创建多行文本控件
+        global t
+        t = Text(root)
+
         t.pack()
 
         root.mainloop()  # 持续展示
@@ -43,12 +49,22 @@ class GUI():
 
 def Open1():
     print("激活按钮1！")
-    Main.OpenCVa()
+    t.insert("insert","开启人脸计时！\n")
+    T = Main.OpenCVa()
+    Str1 = '运行了',T,'秒'
+
+    t.insert("insert", Str1)
+    t.insert("insert", "\n")
+
+
 
 
 def Open2():
     print("激活按钮2！")
-    Main.OpenCVb()
+    str = Main.OpenCVb()
+    t.insert("insert", str)
+    t.insert("insert", "\n")
+
 
 
 if __name__ == '__main__':

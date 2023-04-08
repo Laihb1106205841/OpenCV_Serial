@@ -13,13 +13,15 @@ def sayHello():
 def OpenCVa():
     print("发送命令a！")
     import OpenCV_Serial
-    OpenCV_Serial.FOROUT()
+    T = OpenCV_Serial.FOROUT()
+    return T
 
 
 def OpenCVb():
     print("发送命令b！")
     import Normal
-    Normal.Time()
+    str = Normal.Time()
+    return str
 
 
 

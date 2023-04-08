@@ -11,13 +11,16 @@ def sayHello():
 
 
 def OpenCVa():
-    print("发送命令！")
+    print("发送命令a！")
     import OpenCV_Serial
     OpenCV_Serial.FOROUT()
 
 
 def OpenCVb():
-    print("\033[0;33;40m按钮发送命令成功！请稍等\033[0m")
+    print("发送命令b！")
+    import Normal
+    Normal.Time()
+
 
 
 if __name__ == "__main__":

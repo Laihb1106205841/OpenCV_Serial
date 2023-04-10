@@ -12,7 +12,7 @@ import Main
 class GUI():
 
 
-    show = ''
+
     def __init__(self):
         root = Tk()  # 创建根窗口
         root.title('基于OpenCV的时钟控制系统')

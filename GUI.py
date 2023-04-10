@@ -1,6 +1,8 @@
 from tkinter import *
 #import os
 import Main
+
+
 #import sys
 
 #  获取py 文件所在目录(报错时尝试)

@@ -22,7 +22,7 @@ def Time():
 
 def Sending():
 
-    strSend = Serial.send("2",ser)
+    strSend = Serial.send("2", ser)
 
     strEND = Serial.port_close(ser)
     print("成功调为时钟模式！")

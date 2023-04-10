@@ -57,7 +57,7 @@ def Sending():
         #print("执行sending！")
         #sleep(0.5)
         if (HasFace):
-            Serial.send("1",ser)
+            Serial.send("1", ser)
             i += 1
             Tim +=1
             print(i)

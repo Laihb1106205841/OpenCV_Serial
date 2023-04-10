@@ -23,7 +23,6 @@ class GUI():
         G.conditions(self=self,root=root)
 
 
-
     def conditions(self,root):
 
         condition1 = Button(root, text='人脸计时', bg='yellow', activebackground='red', command=Open1)
@@ -51,12 +50,10 @@ def Open1():
     print("激活按钮1！")
     t.insert("insert","开启人脸计时！\n")
     T = Main.OpenCVa()
-    Str1 = '运行了',T,'秒'
+    Str1 = '人脸出现了',T,'秒'
 
     t.insert("insert", Str1)
     t.insert("insert", "\n")
-
-
 
 
 def Open2():
@@ -64,7 +61,6 @@ def Open2():
     str = Main.OpenCVb()
     t.insert("insert", str)
     t.insert("insert", "\n")
-
 
 
 if __name__ == '__main__':

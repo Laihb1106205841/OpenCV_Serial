@@ -82,8 +82,9 @@ def FOROUT():
     threads = []
 
     try:
+
         global face_cascade
-        face_cascade= cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+        face_cascade= cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     except:
         print("脸部数据库导入失败！请检查CV2有没有装对，或者数据库路径有无问题！")
 

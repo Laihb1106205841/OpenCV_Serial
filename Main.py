@@ -1,5 +1,7 @@
 #from OpenCV_Serial import FOROUT
 #import OpenCVt
+import Communication.Web
+
 print("连接到命令层！")
 
 
@@ -22,6 +24,11 @@ def OpenCVb():
     str = Normal.Time()
     return str
 
+def InternetServer():
+    str = Communication.Web.server()
+
+def InternetClient():
+    str = Communication.Web.client()
 
 
 if __name__ == "__main__":

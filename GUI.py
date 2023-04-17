@@ -45,8 +45,9 @@ class GUI():
 
 
         global entry
-        entry = Entry(root, width=40)
-
+        entry_var = StringVar()
+        entry_var.set('127.18.1.92')
+        entry = Entry(root, width=40, textvariable=entry_var)
 
          # 创建多行文本控件
         global t
@@ -84,8 +85,11 @@ def Open2():
 def Open3a():
     ip = entry.get()
     var = Main.InternetServer(ip)
+    t.insert("insert", "远程操作：")
+    t.insert("insert", "\n")
     t.insert("insert", var)
     t.insert("insert", "\n")
+
 
 
 def Open3b():

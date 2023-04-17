@@ -31,6 +31,17 @@ def OpenCVb():
 
 def InternetServer(ip):
     str = Communication.Web.server(ip=ip)
+    if(str == '2'):
+        print("远程执行时钟模式！")
+        st = OpenCVb()
+
+        return st
+
+    if(str == '1'):
+        print("远程执行人脸识别！")
+        st = OpenCVa()
+        return '人脸出现了',st,'秒'
+
     return str
 
 def InternetClient(ip):

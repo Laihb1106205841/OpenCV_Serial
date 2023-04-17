@@ -10,7 +10,6 @@ def socket_service_data(ip):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
-
         if(ip == '0'):
             ip = '127.0.0.1'
             s.bind(('127.0.0.1', 6665))  # 在同一台主机的ip下使用测试ip进行通信
@@ -33,7 +32,10 @@ def socket_service_data(ip):
     print("Wait for Connection..................")
 
     while True:
-        time.sleep(0.5)
+        time.sleep(0.1)
+        if(0xFF == ord('q')):
+            return 'exit'
+
 
         sock, addr = s.accept()
         buf = sock.recv(1024)  #接收数据

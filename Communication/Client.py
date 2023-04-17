@@ -24,6 +24,7 @@ def sock_client_data(ip):
             print(sys.exit(1))
         data = input("input data:")   #输入要传输的数据
         s.send(data.encode())  #将要传输的数据编码发送，如果是字符数据就必须要编码发送
+        print("发送成功！")
         s.close()
 if __name__ == '__main__':
     ip = 0

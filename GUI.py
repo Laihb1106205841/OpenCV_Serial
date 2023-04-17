@@ -82,10 +82,17 @@ def Open2():
     t.insert("insert", "\n")
 
 def Open3a():
-    str = Main.OpenCVb()
+    ip = entry.get()
+    var = Main.InternetServer(ip)
+    t.insert("insert", var)
+    t.insert("insert", "\n")
+
 
 def Open3b():
-    str = Main.OpenCVb()
+    ip = entry.get()
+    var = Main.InternetClient(ip)
+    t.insert("insert", var)
+    t.insert("insert", "\n")
 
 def getEntry():
     var = entry.get()

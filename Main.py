@@ -3,7 +3,7 @@
 import Communication.Web
 
 print("连接到命令层！")
-
+global NetString
 
 def sayHello():
     str = "hello"
@@ -24,11 +24,13 @@ def OpenCVb():
     str = Normal.Time()
     return str
 
-def InternetServer():
-    str = Communication.Web.server()
+def InternetServer(ip):
+    str = Communication.Web.server(ip=ip)
+    return str
 
-def InternetClient():
-    str = Communication.Web.client()
+def InternetClient(ip):
+    str = Communication.Web.client(ip=ip)
+    return str
 
 
 if __name__ == "__main__":

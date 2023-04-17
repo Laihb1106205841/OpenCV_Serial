@@ -1,9 +1,9 @@
 import socket
 import sys
 
-def sock_client_data():
+def sock_client_data(ip):
     print("请输入您的ip地址，按0开始本地调试模式")
-    ip = input()
+
     while True:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -25,4 +25,5 @@ def sock_client_data():
         s.send(data.encode())  #将要传输的数据编码发送，如果是字符数据就必须要编码发送
         s.close()
 if __name__ == '__main__':
-    sock_client_data()
+    ip = 0
+    sock_client_data(ip)

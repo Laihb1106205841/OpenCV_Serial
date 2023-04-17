@@ -1,9 +1,11 @@
 import socket
 import sys
+import Main
+import time
 
-def socket_service_data():
+def socket_service_data(ip):
     print("请输入您的ip地址，按0开始本地调试模式：")
-    ip = input()
+
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -27,12 +29,16 @@ def socket_service_data():
     print("Wait for Connection..................")
 
     while True:
+        time.sleep(0.5)
+
         sock, addr = s.accept()
         buf = sock.recv(1024)  #接收数据
         buf = buf.decode()  #解码
         print("The data from " + str(addr[0]) + " is " + str(buf))
         print("Successfully")
-        # return buf
+        return str(buf)
+        # Main.NetString = str(buf)
+        # time.sleep(0.5)
         # sock.close()
 if __name__ == '__main__':
     socket_service_data()

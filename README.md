@@ -1,5 +1,21 @@
 # OpenCV_Serial
-本产品利用OpenCV图像识别库，建立了一个图像识别+串口通信的软件
+### 作者
+赖海斌
 
-产品引用了pyserial包，python-OpenCV包，threading包
-代码协议：MIT license
+### 产品简介 
+本产品利用OpenCV图像识别库，建立了一个图像识别+串口通信的软件。
+
+### 产品引用：
+<p>pyserial包<p>
+<p>python-OpenCV库<p>
+<p>threading包<p>
+
+### 许可证：MIT license
+The MIT License (MIT)
+Copyright (c) <2023> <LAI HAIBIN>
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The Software is provided “as is”, without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the Software.
+
+### 版本
+1.2.1

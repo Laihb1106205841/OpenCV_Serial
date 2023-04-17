@@ -1,11 +1,14 @@
 import cv2
 import threading  # 多线程
-
 import serial  # 导入串口通信库
 from time import sleep
 
 import Serial
 
+# -*- coding:utf-8 -*-
+from colorama import init
+
+init(autoreset=True)
 Tim = 0
 
 def port_open_recv(ser):  # 对串口的参数进行配置
@@ -73,7 +76,7 @@ def FOROUT():
     Tim = 0
 
 
-    print("\033[0;33;40m按钮发送命令成功！请稍等\033[0m")
+    print(u'\033[0;33;40m连接到物理层成功！请稍等\033[0m')
     print("按q可退出程序！")
 
     global Running
@@ -120,8 +123,8 @@ def FOROUT():
     t1.join()
     t2.join()
 
+    print(u'\033[0;33;40m退出！\033[0m')
 
-    print("退出！")
 
     # 最后，关闭所有窗口
     cap.release()

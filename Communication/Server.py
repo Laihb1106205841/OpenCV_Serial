@@ -4,7 +4,7 @@ import Main
 import time
 
 def socket_service_data(ip):
-    print("请输入您的ip地址，按0开始本地调试模式：")
+
 
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -12,20 +12,24 @@ def socket_service_data(ip):
 
 
         if(ip == '0'):
+            ip = '127.0.0.1'
             s.bind(('127.0.0.1', 6665))  # 在同一台主机的ip下使用测试ip进行通信
+            #print(ip)
         else:
             try:
                 s.bind((ip, 6665))  #在不同主机或者同一主机的不同系统下使用实际ip
+                #print(ip)
             except:
                 ip = '127.18.1.92'
                 #s.bind(('127.18.1.92',6666))
                 s.bind((ip,6665))
+        print(ip)
 
         s.listen(10)
     except socket.error as msg:
         print(msg)
         sys.exit(1)
-
+    print("Server open successfully!")
     print("Wait for Connection..................")
 
     while True:

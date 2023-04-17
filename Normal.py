@@ -1,10 +1,14 @@
 import serial
 import Serial
 
+# -*- coding:utf-8 -*-
+from colorama import init
+
+init(autoreset=True)
 
 
 def Time():
-    print("\033[0;33;40m按钮发送命令成功！请稍等\033[0m")
+    print('\033[0;33;40m按钮发送命令成功！请稍等\033[0m')
 
     try:
         global ser
@@ -25,7 +29,9 @@ def Sending():
     strSend = Serial.send("2", ser)
 
     strEND = Serial.port_close(ser)
-    print("成功调为时钟模式！")
+
+    print('\033[0;33;40m成功调为时钟模式！\033[0m')
+
 
     str2 = strSend
     return str2

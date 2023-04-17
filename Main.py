@@ -1,8 +1,13 @@
 #from OpenCV_Serial import FOROUT
 #import OpenCVt
 import Communication.Web
+# -*- coding:utf-8 -*-
+from colorama import init
+init(autoreset=True)
 
-print("连接到命令层！")
+
+print('\033[0;33;40m连接到命令层！\033[0m')
+
 global NetString
 
 def sayHello():
@@ -12,14 +17,14 @@ def sayHello():
 
 
 def OpenCVa():
-    print("发送命令a！")
+    print('\033[0;33;40m开启OpenCV与串口通信！\033[0m')
     import OpenCV_Serial
     T = OpenCV_Serial.FOROUT()
     return T
 
 
 def OpenCVb():
-    print("发送命令b！")
+    print('\033[0;33;40m开启连接串口通信层！\033[0m')
     import Normal
     str = Normal.Time()
     return str

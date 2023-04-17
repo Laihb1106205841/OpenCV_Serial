@@ -2,7 +2,7 @@ import socket
 import sys
 
 def sock_client_data(ip):
-    print("请输入您的ip地址，按0开始本地调试模式")
+
 
     while True:
         try:
@@ -17,6 +17,7 @@ def sock_client_data(ip):
                 except:
                     s.connect(('127.18.1.92',6665))
                     ip = '127.18.1.92'
+                    print(ip)
 
         except socket.error as msg:
             print(msg)

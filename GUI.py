@@ -13,7 +13,7 @@ import Main
 
 class GUI():
 
-
+    ip = '127.18.1.92'
 
     def __init__(self):
         root = Tk()  # 创建根窗口
@@ -24,32 +24,29 @@ class GUI():
         print("GUI打开成功！")
         G.conditions(self=self,root=root)
 
-
     def conditions(self,root):
 
         condition1 = Button(root, text='人脸计时', bg='yellow', activebackground='red', command=Open1)
         #fg_color = Button(root, text='前景色', fg='red')  # 设置按钮的前景色
         condition1.config(state=NORMAL)
 
-
         condition2 = Button(root, text='时钟模式', bg='yellow', activebackground='red', command=Open2)
         condition2.config(state=NORMAL)
-
 
         condition3 = Button(root, text='网络服务器模式', bg='yellow', activebackground='red', command=Open3a)
         condition3.config(state=NORMAL)
 
-
         condition4 = Button(root, text='网络客户端模式', bg='yellow', activebackground='red', command=Open3b)
         condition4.config(state=NORMAL)
-
 
         global entry
         entry_var = StringVar()
         entry_var.set('127.18.1.92')
         entry = Entry(root, width=40, textvariable=entry_var)
+        global ip
+        ip = entry.get()
 
-         # 创建多行文本控件
+        # 创建多行文本控件
         global t
         t = Text(root)
 
@@ -85,18 +82,27 @@ def Open2():
 def Open3a():
     ip = entry.get()
     var = Main.InternetServer(ip)
+
+    if(var == '3'):
+        from Communication import Cl2Se
+        Cl2Se.SerClo()
+
     t.insert("insert", "远程操作：")
     t.insert("insert", "\n")
     t.insert("insert", var)
     t.insert("insert", "\n")
 
 
-
 def Open3b():
     ip = entry.get()
     var = Main.InternetClient(ip)
+    if (var == '3'):
+        from Communication import Cl2Se
+        Cl2Se.CliCam()
+
     t.insert("insert", var)
     t.insert("insert", "\n")
+
 
 def getEntry():
     var = entry.get()

@@ -3,6 +3,9 @@
 import Communication.Web
 # -*- coding:utf-8 -*-
 from colorama import init
+
+import OpenCV_Serial
+
 init(autoreset=True)
 
 
@@ -46,6 +49,7 @@ def InternetServer(ip):
 
 def InternetClient(ip):
     str = Communication.Web.client(ip=ip)
+
     return str
 
 

@@ -107,7 +107,7 @@ def FOROUT():
         ser = serial.Serial()
         port_open_recv(ser=ser)  # 打开串口
     except:
-        print("Serial库调用失败！请检查Serial库是否正确安装！")
+        print("打开串口失败！可能是Serial库调用失败！请检查Serial库是否正确安装！或者检查是否有其他程序占用串口！")
 
     global HasFace
     HasFace = False

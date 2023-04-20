@@ -16,7 +16,8 @@ import Serial
 
 def client():
     ip = GUI.GUI.ip
-    while True:
+    global Running
+    while Running:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -44,6 +45,8 @@ def client():
         time.sleep(1)
         s.close()
 
+    print("客户端通讯中断")
+
 def OpenCVCam():
     global Running
 
@@ -69,10 +72,12 @@ def OpenCVCam():
         # 每5毫秒监听一次键盘动作
         if cv2.waitKey(5) & 0xFF == ord('q'):
             Running = False
+            global HasFace
+            HasFace = False
             break
 
         elif( len(faces) > 0 ):
-            global HasFace
+            #global HasFace
             HasFace = True
 
         else:
@@ -84,6 +89,9 @@ def CliCam():
     threads = []
     global HasFace
     HasFace = False
+    global Running
+    Running = True
+
 
     try:
 
@@ -111,6 +119,8 @@ def CliCam():
 
     for t in threads:
         t.join()
+
+    print("结束通讯！")
 
 
 def SerClo():
@@ -146,6 +156,7 @@ def SerClo():
     ser = serial.Serial()
     Serial.port_open_recv(ser=ser)
 
+
     while True:
         time.sleep(0.1)
         if(0xFF == ord('q')):
@@ -162,5 +173,9 @@ def SerClo():
 
             Ti += 1
             time.sleep(0.05)
+        if(str(buf) == '7'):
+            print("侦测到结束信号")
+            break
 
     Serial.port_close(ser=ser)
+    print("结束服务器通讯！")

@@ -52,6 +52,15 @@ def InternetClient(ip):
 
     return str
 
+def Cli():
+    from Communication import Cl2Se
+    Cl2Se.CliCam()
+
+def Ser():
+    from Communication import Cl2Se
+    s = Cl2Se.SerClo()
+    return s
+
 
 if __name__ == "__main__":
     print('This is main of module "hello.py"')

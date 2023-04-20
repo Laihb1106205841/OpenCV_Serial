@@ -42,8 +42,7 @@ def client():
         if(HasFace):
             data = '6'  # 输入要传输的数据
             s.send(data.encode())  # 将要传输的数据编码发送，如果是字符数据就必须要编码发送
-            print("发送成功！")
-
+            print("发送数据：", 6, "成功")
 
         if(Ending):
             data = '7'  # 输入要传输的数据
@@ -106,19 +105,19 @@ def CliCam():
     global Ending
     Ending = False
 
-
     try:
 
         global face_cascade
         face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
     except:
         print("脸部数据库导入失败！请检查CV2有没有装对，或者数据库路径有无问题！")
-
 
     try:
         global cap
         cap = cv2.VideoCapture(0)
         print("成功打开摄像头！")
+
     except:
         print("电脑摄像头未成功开启！你可能关闭了摄像头！")
 
@@ -172,7 +171,7 @@ def SerClo():
 
 
     while True:
-        time.sleep(0.1)
+        time.sleep(0.03)
         if(0xFF == ord('q')):
             break
 
@@ -182,14 +181,15 @@ def SerClo():
         print("The data from " + str(addr[0]) + " is " + str(buf))
 
         if(str(buf) == '6'):
-
             Serial.send(send_data="1", ser=ser)
 
             Ti += 1
-            time.sleep(0.05)
+            time.sleep(0.5)
         if(str(buf) == '7'):
             print("侦测到结束信号")
             break
 
     Serial.port_close(ser=ser)
     print("结束服务器通讯！")
+
+    return Ti

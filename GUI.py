@@ -84,21 +84,25 @@ def Open3a():
     var = Main.InternetServer(ip)
 
     if(var == '3'):
-        from Communication import Cl2Se
-        Cl2Se.SerClo()
+        s = Main.Ser()
+        m = "识别人脸：",s,"秒"
+        t.insert("insert", "远程操作：")
+        t.insert("insert", "\n")
+        t.insert("insert", m)
+        t.insert("insert", "\n")
 
-    t.insert("insert", "远程操作：")
-    t.insert("insert", "\n")
-    t.insert("insert", var)
-    t.insert("insert", "\n")
+    else:
+        t.insert("insert", "远程操作：")
+        t.insert("insert", "\n")
+        t.insert("insert", var)
+        t.insert("insert", "\n")
 
 
 def Open3b():
     ip = entry.get()
     var = Main.InternetClient(ip)
     if (var == '3'):
-        from Communication import Cl2Se
-        Cl2Se.CliCam()
+       s = Main.Cli()
 
     t.insert("insert", var)
     t.insert("insert", "\n")

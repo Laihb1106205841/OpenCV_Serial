@@ -17,7 +17,9 @@ import Serial
 def client():
     ip = GUI.GUI.ip
     global Running
-    while Running:
+    global Ending
+
+    while True:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -38,9 +40,16 @@ def client():
 
         global HasFace
         if(HasFace):
-            data = '6'  #输入要传输的数据
-            s.send(data.encode())  #将要传输的数据编码发送，如果是字符数据就必须要编码发送
+            data = '6'  # 输入要传输的数据
+            s.send(data.encode())  # 将要传输的数据编码发送，如果是字符数据就必须要编码发送
             print("发送成功！")
+
+
+        if(Ending):
+            data = '7'  # 输入要传输的数据
+            s.send(data.encode())  # 将要传输的数据编码发送，如果是字符数据就必须要编码发送
+            print("发送成功！")
+            break
 
         time.sleep(1)
         s.close()
@@ -74,6 +83,8 @@ def OpenCVCam():
             Running = False
             global HasFace
             HasFace = False
+            global Ending
+            Ending = True
             break
 
         elif( len(faces) > 0 ):
@@ -91,6 +102,9 @@ def CliCam():
     HasFace = False
     global Running
     Running = True
+
+    global Ending
+    Ending = False
 
 
     try:

@@ -104,6 +104,7 @@ def Open3b():
     if (var == '3'):
        s = Main.Cli()
 
+    var = '执行操作',var
     t.insert("insert", var)
     t.insert("insert", "\n")
 
